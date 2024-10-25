@@ -14,7 +14,18 @@ const commentsSlice = createSlice({
     addComment: commentsAdapter.addOne,
   },
   // BEGIN (write your solution here)
-
+  extraReducers: (builder) => { // Дополнительные редьюсеры
+    builder.addCase(postsActions.removePost, (state, action) => {
+      const post = action.payload;
+      const restEntities = Object.values(state.entities).filter((e) => !post.comments.includes(e.id));
+      commentsAdapter.setAll(state, restEntities);
+    })
+    builder.addCase(usersActions.removeUser, (state, action) => {
+      const id = action.payload;
+      const restEntities = Object.values(state.entities).filter((e) => e.author !== id);
+      commentsAdapter.setAll(state, restEntities);
+    })
+  }
   // END
 });
 

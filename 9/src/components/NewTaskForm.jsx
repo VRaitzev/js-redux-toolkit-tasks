@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // BEGIN (write your solution here)
-
+import { addTask } from '../slices/tasksSlice';
 // END
 
 const NewTaskForm = () => {
@@ -10,9 +10,9 @@ const NewTaskForm = () => {
   const dispatch = useDispatch();
 
   const handleAddTask = (e) => {
-    // BEGIN (write your solution here)
-
-    // END
+    e.preventDefault(); 
+    dispatch(addTask({ name }));
+    setName('');
   };
 
   const onChange = (e) => setName(e.target.value);

@@ -4,9 +4,15 @@ import { useSelector } from 'react-redux';
 import Post from './Post.jsx';
 
 const Posts = () => {
-  // BEGIN (write your solution here)
+  const { ids, entities } = useSelector((state) => state.postsReducer);
 
-  // END
+  return (
+    <div className="mt-3">
+      {ids.map((id) => (
+        <Post key={id} post={entities[id]} />
+      ))}
+    </div>
+  );
 };
 
 export default Posts;
